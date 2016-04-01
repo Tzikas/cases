@@ -1,0 +1,39 @@
+
+
+<html>
+<h4 id='total'>Total</h4>
+<textarea id="textbox_id" style="height:50%; width:100%">
+
+
+</textarea>
+
+<button id="submit">Submit</button> 
+<script>
+
+	document.addEventListener('click',function(){
+		var value = document.getElementById('textbox_id').value;
+//split("\n");  
+		var arr = value.split('\n').join(' ').split(' - ').join(' ').split(' ');
+		var fee = 0;
+		var min = 0; 
+		var numOfCases = 0; 
+		console.log(arr);
+		for(var a=0; a<arr.length; a++){
+			if(arr[a].toLowerCase() == 'min'){
+				min = min + parseInt(arr[a-1])
+				numOfCases++;
+			}
+			if(arr[a].toLowerCase() == 'fee'){	
+				fee = fee + parseInt(arr[a-1].substring(1))				
+				numOfCases++;
+			}
+		}
+
+		var total = ( fee * .4 ) + ( ( min / 60 ) * 33 );
+		console.log('the total is '+total);
+		document.getElementById('total').innerHTML = "<b>Total is: $"+total+"</b><br> Number of cases: "+numOfCases+"<br> Fee: "+fee+"<br> Min: "+min; 
+		
+	})
+
+</script>
+</html>
